@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ListingController;
+use App\Http\Controllers\SlideController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -63,7 +64,14 @@ Route::get('/login', [UserController:: class, 'login'])->name('login')->middlewa
 // Login User
 Route::post('/users/authenticate', [UserController:: class, 'authenticate']);
 
+/* Slide Functionality */
+// Show Create Form - these routes may need to precede any routes with /slides/{wildcard} to work
 
+// Show Create form
+Route::get('/slides/create', [SlideController::class, 'create']);
+
+// Store data
+Route::post('/slides/store', [SlideController::class, 'store']);
 
 /*
 Route::get('/hello', function () {

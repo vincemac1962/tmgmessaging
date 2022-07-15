@@ -18,6 +18,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'company_id',
         'name',
         'email',
         'password',
@@ -45,5 +46,14 @@ class User extends Authenticatable
     // Relationship with listings
     public function listings() {
         return $this->hasMany(Listing::class, 'user_id');
+    }
+
+    // Relationship with listings
+    public function slides() {
+        return $this->hasMany(Slide::class, 'company_id');
+    }
+
+    public function company() {
+        return $this->belongsTo(Company::class, 'id');
     }
 }

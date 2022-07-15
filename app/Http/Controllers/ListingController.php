@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Listing as Listing;
+use App\Models\User as User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -11,8 +12,8 @@ class ListingController extends Controller
 {
     // get and show all listing (index route)
     public function index() {
-        $user = auth()->user();
-        dd($user);
+        /*$company = User::find(auth()->id())->company_id;
+        dd($company);*/
         return view('listings.index',[
             'listings' => Listing::latest()->filter(request(['tag', 'search']))->paginate(6)
         ]);
@@ -32,7 +33,7 @@ class ListingController extends Controller
 
     //  Store listing data
     public function store(Request $request) {
-        //dd($request->file('logo'));
+        //dd($request->all());
         $formFields = $request->validate([
             'title' => 'required',
             'company' => ['required', Rule::unique('listings', 'company')],

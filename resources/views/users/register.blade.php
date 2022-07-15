@@ -8,6 +8,15 @@
         <form method="POST" action="/users">
             @csrf
             <div class="mb-6">
+                <label for="company_id" class="inline-block text-lg mb-2"> Name </label>
+                <input type="text" class="border border-gray-200 rounded p-2 w-full" name="company_id" value="{{old('company_id')}}" />
+
+                @error('company_id')
+                <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                @enderror
+            </div>
+
+            <div class="mb-6">
                 <label for="name" class="inline-block text-lg mb-2"> Name </label>
                 <input type="text" class="border border-gray-200 rounded p-2 w-full" name="name" value="{{old('name')}}" />
 
