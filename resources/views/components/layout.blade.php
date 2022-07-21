@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="images/favicon.ico" />
+    <link rel="icon" href="{{ asset('images/favicon.ico') }}" />
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
@@ -19,28 +19,26 @@
             theme: {
                 extend: {
                     colors: {
-                        laravel: "#ef3b2d",
+                        laravel: "#23576f",
                     },
                 },
             },
         };
     </script>
-    <title>LaraGigs | Find Laravel Jobs & Projects</title>
+    <title>Time Media Group - Message Editor</title>
 </head>
 <body class="mb-48">
 <nav class="flex justify-between items-center mb-4">
     <a href="/"
-    ><img class="w-24" src="{{asset('images/logo.png')}}" alt="" class="logo"
+    ><img class="w-24" src="{{asset('images/time_logo.png')}}" alt="" class="logo"
         /></a>
-    <ul class="flex space-x-6 mr-6 text-lg">
+    <ul class="flex space-x-6 mr-6 text-md">
         @auth
+
         <li>
-            <span class="font-bold uppercase">Welcome {{auth()->user()->name}}</span>
-        </li>
-        <li>
-            <a href="/listings/manage" class="hover:text-laravel"
+            <a href="/slides/manage" class="hover:text-laravel"
             ><i class="fa-solid fa-gear"></i>
-                Manage Listings</a>
+                Manage</a>
         </li>
         <li>
             <form class="inline" method="POST" action="/logout">
@@ -65,9 +63,9 @@
     {{--View Output--}}
         {{$slot}}
     </main>
-<footer class="fixed bottom-0 left-0 w-full flex items-center justify-start font-bold bg-laravel text-white h-24 mt-24 opacity-90 md:justify-center">
-    <p class="ml-2">Copyright &copy; 2022, All Rights reserved</p>
-    <a href="/slides/create" class="absolute top-1/3 right-10 bg-black text-white py-2 px-5">Post Job</a>
+<footer class="fixed bottom-0 left-0 w-full flex items-center font-bold bg-laravel text-white h-24 mt-24 opacity-90" style="justify-content: center">
+    <div style="text-align: center"><p class="ml-2">Copyright © Time Media Group, 2022, All Rights reserved</p></div>
+
 </footer>
 <x-flash-message />
 </body>

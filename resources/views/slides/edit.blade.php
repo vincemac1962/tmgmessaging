@@ -2,12 +2,13 @@
         <x-card class="p-10 rounded max-w-lg mx-auto mt-24">
             <header class="text-center">
                 <h2 class="text-2xl font-bold uppercase mb-1">
-                    Add a Slide
+                    Edit Slide
                 </h2>
             </header>
 
-            <form method="POST" action="/slides/store" enctype="multipart/form-data">
+            <form method="POST" action="/slides/{{$slide->id}}" enctype="multipart/form-data">
                 @csrf
+                @method('PUT')
                 <div class="mb-6">
                     <label
                         for="description"
@@ -18,7 +19,7 @@
                         type="text"
                         class="border border-gray-200 rounded p-2 w-full"
                         name="description"
-                        value="{{old('description')}}"
+                        value="{{$slide->description}}"
                     />
                     @error('description')
                         <p class="text-red-500 text-xs mt-1">{{$message}}</p>
@@ -34,7 +35,7 @@
                         class="border border-gray-200 rounded p-2 w-full"
                         name="link"
                         placeholder="Url for slide - include https://"
-                        value="{{old('link')}}"
+                        value="{{$slide->link}}"
                     />
                     @error('link')
                     <p class="text-red-500 text-xs mt-1">{{$message}}</p>
@@ -52,7 +53,7 @@
                         class="border border-gray-200 rounded p-2 w-full"
                         name="time_on"
                         placeholder="Time to start display"
-                        value="{{old('time_on')}}"
+                        value="{{$slide->time_on}}"
                     />
                     @error('time_on')
                     <p class="text-red-500 text-xs mt-1">{{$message}}</p>
@@ -68,7 +69,7 @@
                         class="border border-gray-200 rounded p-2 w-full"
                         name="date_on"
                         placeholder="Date to start display"
-                        value="{{old('date_on')}}"
+                        value="{{$slide->date_on}}"
                     />
                     @error('date_on')
                     <p class="text-red-500 text-xs mt-1">{{$message}}</p>
@@ -86,7 +87,7 @@
                         class="border border-gray-200 rounded p-2 w-full"
                         name="time_off"
                         placeholder="Time to stop display"
-                        value="{{old('time_off')}}"
+                        value="{{$slide->time_off}}"
                     />
                     @error('time_off')
                     <p class="text-red-500 text-xs mt-1">{{$message}}</p>
@@ -102,7 +103,7 @@
                         class="border border-gray-200 rounded p-2 w-full"
                         name="date_off"
                         placeholder="Date to stop display"
-                        value="{{old('date_off')}}"
+                        value="{{$slide->date_off}}"
                     />
                     @error('date_off')
                     <p class="text-red-500 text-xs mt-1">{{$message}}</p>
@@ -130,7 +131,7 @@
                         class="border border-gray-200 rounded p-2 w-full"
                         name="specific_sites"
                         placeholder="Enter site codes"
-                        value="{{old('specific_sites')}}"
+                        value="{{$slide->specific_sites}}"
                     />
                     @error('specific_sites')
                     <p class="text-red-500 text-xs mt-1">{{$message}}</p>
@@ -152,7 +153,7 @@
                         rows="10"
                         placeholder="Notes for slide"
 
-                    >{{old('notes')}}</textarea>
+                    >{{$slide->notes}}</textarea>
                     @error('notes')
                     <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                     @enderror
@@ -162,7 +163,7 @@
                     <button
                         class="bg-laravel text-white rounded py-2 px-4 hover:bg-black"
                     >
-                        Add Slide
+                        Update Slide
                     </button>
 
                     <a href="/" class="text-black ml-4"> Back </a>

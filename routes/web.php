@@ -35,6 +35,7 @@ Route::post('/listings', [ListingController:: class, 'store'])->middleware('auth
 
 // Show edit form
 Route::get('/listings/{listing}/edit', [ListingController:: class, 'edit'])->middleware('auth');
+
 // Update listing
 Route::put('/listings/{listing}', [ListingController:: class, 'update'])->middleware('auth');
 
@@ -72,6 +73,24 @@ Route::get('/slides/create', [SlideController::class, 'create']);
 
 // Store data
 Route::post('/slides/store', [SlideController::class, 'store']);
+
+// Manage listings
+Route::get('/slides/manage', [SlideController:: class, 'manage']);
+
+// Show edit form
+Route::get('/slides/{slide}/edit', [SlideController:: class, 'edit']);
+
+// Update listing
+// ToDo: finish save functionality - currently failing on 'global' field
+Route::put('/slides/{slide}', [SlideController:: class, 'update']);
+
+// Delete listing
+// ToDo: build out deletion
+Route::delete('/slides/{slide}', [SlideController:: class, 'destroy']);
+
+
+
+
 
 /*
 Route::get('/hello', function () {

@@ -17,6 +17,15 @@ class ListingController extends Controller
         return view('listings.index',[
             'listings' => Listing::latest()->filter(request(['tag', 'search']))->paginate(6)
         ]);
+
+        /* Current Login User Details
+        $user = auth()->user();
+        var_dump($user);*/
+
+        /* Current Login User ID - THIS WORKS AND GIVES AN ID OF 1
+        $company = auth()->user()->company_id;
+        var_dump($company);*/
+
     }
 
     // show individual listing (show route)
@@ -99,7 +108,7 @@ class ListingController extends Controller
 
     // Manage listings
     public function manage() {
-        return view('listings.manage', ['listings' => auth()->user()->listings()->get()]);
+        return view('listings.manage', ['listings' => auth()->user()->slides()->get()]);
     }
 
 }
