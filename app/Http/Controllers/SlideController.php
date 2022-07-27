@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Site;
 use App\Models\Slide;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -11,6 +12,11 @@ use Illuminate\Validation\Rule;
 class SlideController extends Controller
 {
     // ToDo - index
+
+    public function index()
+    {
+        return Slide::all();
+    }
 
     // Show create form (create route)
     public function create() {
@@ -103,6 +109,47 @@ class SlideController extends Controller
         $slide->delete();
         return redirect('/slides/manage')->with('message', 'Slide deleted successfully');
     }
+
+    public function storeFromApi(Request $request) {
+        $request->validate([
+            'user_id' => 'required',
+            'company_id' => 'required',
+            'description' => 'required',
+            'link' => 'required',
+            'time_on' => 'required',
+            'time_off' => 'required',
+            'date_on' => 'required',
+            'date_off' => 'required',
+        ]);
+        // ToDo: add base dates and date checking
+        return Slide::create($request->all());
+
+        //return redirect('/')->with('message', 'Slide added successfully');
+    }
+
+    public function showFromApi($id)
+    {
+        Return Slide::find($id);
+    }
+
+    public function searchFromApi(string $search_string)
+    {
+        Return Slide::where('description', 'like', '%' . $search_string . "%")->get();
+    }
+
+    public function updateFromApi(Request $request, $id)
+    {
+        $slide = Slide::find($id);
+        $slide->update($request->all());
+        return $slide;
+    }
+
+    public function destroyFromApi($id)
+    {
+        Return Slide::destroy($id);
+    }
+
+
 
 
 }
