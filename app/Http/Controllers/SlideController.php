@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Site;
+
 use App\Models\Slide;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Validation\Rule;
+
 
 class SlideController extends Controller
 {
-    // ToDo - index
 
     public function index()
     {

@@ -40,7 +40,7 @@ Route::get('sites/search/{site_ref}', [SiteController::class, 'search']);
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
-Route::put('/sites/{id}', [SiteController::class, 'update']);
+Route::put('/sites/{id}', [SiteController::class, 'updateFromAPI']);
 
 // Public routes for slides - currently all
 

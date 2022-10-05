@@ -34,6 +34,23 @@ class UserController extends Controller
         return redirect('/')->with('message', 'User created successfully');
     }
 
+    //Create new user
+    public function update(Request $request, User $user) {
+        $formFields = $request->validate([
+            'company_id' => 'required',
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required'
+        ]);
+
+        // Hash password
+        $formFields['password'] = bcrypt($formFields['password']);
+
+        $user->update($formFields);
+
+        return back()->with('message', 'User updated successfully');
+    }
+
     public function logout(Request $request) {
         auth()->logout();
         $request->session()->invalidate();
@@ -53,7 +70,12 @@ class UserController extends Controller
 
         if(auth()->attempt($formFields)) {
             $request->session()->regenerate();
-            return redirect('/')->with('message', 'You are now logged in');
+            $user_type = User::find(auth()->id())->company_id;
+            if ($user_type == 'admin') {
+                return redirect('/admin/controlpanel')->with('message', 'You are now logged in as admin');
+            } else {
+                return redirect('/slides/manage')->with('message', 'You are now logged in');
+            }
         }
 
         return back()->withErrors(['email' => 'Invalid Credentials'])->onlyInput('email');

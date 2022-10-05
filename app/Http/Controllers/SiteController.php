@@ -3,10 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Models\Site;
+use App\Models\Slide;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class SiteController extends Controller
 {
+    public function updateSite(Request $request, Site $site) {
+
+        // Create array from form field data
+        $formFields = $request->post();
+
+        $site->update($formFields);
+
+        return back()->with('message', 'Site updated successfully');
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -50,7 +63,7 @@ class SiteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function updateFromAPI(Request $request, $id)
     {
         $site = Site::find($id);
         $site->update($request->all());

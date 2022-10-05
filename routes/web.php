@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ListingController;
+use App\Http\Controllers\SiteController;
 use App\Http\Controllers\SlideController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -88,9 +90,20 @@ Route::put('/slides/{slide}', [SlideController:: class, 'update']);
 // ToDo: build out deletion
 Route::delete('/slides/{slide}', [SlideController:: class, 'destroy']);
 
-
-
-
+/* Admin routes */
+// Control Panel
+Route::get('/admin/controlpanel', [AdminController:: class, 'controlPanel']);
+// Slides
+Route::get('/admin/manageslides', [AdminController:: class, 'manageSlides']);
+Route::get('/admin/slide/{slide}/edit', [AdminController:: class, 'editSlide']);
+// Users
+Route::get('/admin/manageusers', [AdminController:: class, 'manageUsers']);
+Route::get('/admin/user/{user}/edit', [AdminController:: class, 'editUser']);
+Route::put('/user/{user}', [UserController:: class, 'update']);
+// Sites
+Route::get('/admin/managesites', [AdminController:: class, 'manageSites']);
+Route::get('/sites/{site}/edit', [AdminController:: class, 'editSite']);
+Route::put('/admin/site/{site}/edit', [SiteController:: class, 'updateSite']);
 
 /*
 Route::get('/hello', function () {
